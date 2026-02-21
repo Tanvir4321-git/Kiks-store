@@ -1,2 +1,14 @@
 @import "tailwindcss";
 
+@theme {
+  --font-family-rubik: var(--font-rubik);
+  --font-family-open-sans: var(--font-open-sans);
+}
+
+body {
+  font-family: var(--font-rubik);
+}
+
+.open-sans {
+  font-family: var(--font-open-sans);
+}
