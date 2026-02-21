@@ -44,40 +44,40 @@ const NewDrops = () => {
       </div>
 
       {/* Grid */}
-      <div className='grid grid-cols-4 gap-4'>
-        { products.map((product) => (
-              <div key={product.id} className='flex flex-col'>
-            
-             <div className='rounded-[24px] overflow-hidden relative border-6 border-white bg-[#eceef0]'>
-                
-                {/* New Badge */}
-                <div className='bg-[#4A69E2] py-1.5 px-3 rounded-tl-[16px] rounded-br-[16px] absolute left-0 top-0 z-10'>
-                  <h3 className='font-semibold text-[12px] text-white'>New</h3>
-                </div>
+      <div className='grid md:grid-cols-4 grid-cols-2 gap-4'>
+        {products.map((product) => (
+          <div key={product.id} className='flex flex-col'>
 
-                {/* Image */}
-                <div className='relative w-full h-[260px] '>
-                  <Image
-                    src={product.images[0]}
-                    alt={product.title}
-                    fill
-                    className='object-cover'
-                    unoptimized
-                  />
-                </div>
-             </div>
+            <div className='rounded-[24px] overflow-hidden relative border-6 border-white bg-[#eceef0]'>
 
-                <h2 className='text-2xl font-semibold my-4'>
-                   {product.title}
-                </h2>
-                <button className='py-2 px-4 rounded-lg bg-black text-white w-full mt-auto' >
-View Product - <span className='text-[#FFA52F]'>$125</span> 
-                </button>
-
-
-          
+              {/* New Badge */}
+              <div className='bg-[#4A69E2] py-1.5 px-3 rounded-tl-[16px] rounded-br-[16px] absolute left-0 top-0 z-10'>
+                <h3 className='font-semibold text-[12px] text-white'>New</h3>
               </div>
-            ))}
+
+              {/* Image */}
+              <div className='relative w-full md:h-65 h-41 '>
+                <Image
+                  src={product.images[0]}
+                  alt={product.title}
+                  fill
+                  className='object-cover '
+                  unoptimized
+                />
+              </div>
+            </div>
+
+            <h2 className='md:text-2xl text-[16px] font-semibold my-4'>
+              {product.title}
+            </h2>
+            <button className='py-2 px-4 rounded-lg text-[12px] font-medium bg-black text-white w-full mt-auto' >
+              View Product - <span className='text-[#FFA52F] text-[12px] font-medium'>$125</span>
+            </button>
+
+
+
+          </div>
+        ))}
       </div>
 
     </div>
