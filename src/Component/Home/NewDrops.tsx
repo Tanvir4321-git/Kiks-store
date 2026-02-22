@@ -1,6 +1,7 @@
 'use client'
 import axios from 'axios';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 interface Product {
@@ -43,19 +44,42 @@ const NewDrops = () => {
         </button>
       </div>
 
-      {/* Grid */}
       <div className='grid md:grid-cols-4 grid-cols-2 gap-4'>
-        {products.map((product) => (
+
+        {/*  Skeleton*/}
+        {loading &&
+          Array.from({ length: 4 }).map((_, i) => (
+            <div key={i} className='flex flex-col animate-pulse'>
+              <div className='rounded-[24px] overflow-hidden relative border-6 border-white bg-[#eceef0]'>
+                <div className='w-full md:h-65 h-41 bg-gray-300' />
+              </div>
+              <div className='h-6 bg-gray-300 rounded my-4 w-3/4'></div>
+              <div className='h-9 bg-gray-300 rounded w-full mt-auto'></div>
+            </div>
+          ))}
+
+        {/* Empty  */}
+        {!loading && products.length === 0 && (
+          <div className='col-span-4 flex flex-col items-center justify-center py-24 text-center'>
+            <h3 className='text-2xl font-semibold text-gray-700'>
+              No Product Found
+            </h3>
+            <p className='text-gray-500 mt-2'>
+              There are no new drops available right now.
+            </p>
+          </div>
+        )}
+
+        {/* Products */}
+        {!loading && products.map((product) => (
           <div key={product.id} className='flex flex-col'>
 
             <div className='rounded-[24px] overflow-hidden relative border-6 border-white bg-[#eceef0]'>
 
-              {/* New Badge */}
               <div className='bg-[#4A69E2] py-1.5 px-3 rounded-tl-[16px] rounded-br-[16px] absolute left-0 top-0 z-10'>
                 <h3 className='font-semibold text-[12px] text-white'>New</h3>
               </div>
 
-              {/* Image */}
               <div className='relative w-full md:h-65 h-41 '>
                 <Image
                   src={product.images[0]}
@@ -70,11 +94,12 @@ const NewDrops = () => {
             <h2 className='md:text-2xl text-[16px] font-semibold my-4'>
               {product.title}
             </h2>
-            <button className='py-2 px-4 rounded-lg text-[12px] font-medium bg-black text-white w-full mt-auto' >
-              View Product - <span className='text-[#FFA52F] text-[12px] font-medium'>$125</span>
-            </button>
-
-
+            <Link
+              href={`/product/${product.id}`}
+              className='py-2 px-4 rounded-lg text-[12px] text-center font-medium bg-black text-white w-full mt-auto'
+            >
+              View Product - <span className='text-[#FFA52F] text-[12px] font-medium'>${product.price}</span>
+            </Link>
 
           </div>
         ))}
