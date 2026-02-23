@@ -60,18 +60,18 @@ const Cart = () => {
                                     <option>Size 2</option>
                                     <option>Size 3</option>
                                 </select>
-                                <label className="md:ml-10 ml-4 text-[#232321] font-semibold text-[16px] md:text-[20px] open-sans ">Quentity</label>
+                              
 
                                 <select
                                     value={quantity}
                                     onChange={(e) => setquantity(Number(e.target.value))}
-                                    className='text-[#232321] appearance-none md:appearance-auto font-semibold text-[16px] md:text-[20px] open-sans pr-6'
+                                    className='text-[#232321] md:ml-10 ml-4 appearance-none md:appearance-auto font-semibold text-[16px] md:text-[20px] open-sans pr-6'
                                 >
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
+                                    <option value="1">Quentity 1</option>
+                                    <option value="2">Quentity 2</option>
+                                    <option value="3">Quentity 3</option>
+                                    <option value="4">Quentity 4</option>
+                                    <option value="5">Quentity 5</option>
                                 </select>
                                 </div>
                                 <h3 className='text-[#4A69E2] text-[20px] font-semibold mt-2   md:hidden flex  '>

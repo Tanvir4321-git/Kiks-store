@@ -5,6 +5,8 @@ import axios from 'axios';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+
 interface Product {
     id: number;
     title: string;
@@ -86,10 +88,18 @@ const ProductDetails = () => {
             <div className='flex md:flex-row flex-col gap-4 '>
                 {/* image div */}
                 <div className='md:grid md:grid-cols-2 gap-4 w-full md:w-2/3 hidden'>
-                    <Image src={products?.images[0]} alt='' width={429} height={510} className='rounded-tl-[48px]' />
-                    <Image src={products?.images[1]} alt='' width={429} height={510} className='rounded-tr-[48px]' />
-                    <Image src={products?.images[2]} alt='' width={429} height={510} className='rounded-bl-[48px]' />
-                    <Image src={products?.images[0]} alt='' width={429} height={510} className='rounded-br-[48px]' />
+                    <motion.div className='overflow-hidden rounded-tl-[48px]' whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+                        <Image src={products?.images[0]} alt='' width={429} height={510} className='rounded-tl-[48px]' />
+                    </motion.div>
+                    <motion.div className='overflow-hidden rounded-tr-[48px]' whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+                        <Image src={products?.images[1]} alt='' width={429} height={510} className='rounded-tr-[48px]' />
+                    </motion.div>
+                    <motion.div className='overflow-hidden rounded-bl-[48px]' whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+                        <Image src={products?.images[2]} alt='' width={429} height={510} className='rounded-bl-[48px]' />
+                    </motion.div>
+                    <motion.div className='overflow-hidden rounded-br-[48px]' whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+                        <Image src={products?.images[0]} alt='' width={429} height={510} className='rounded-br-[48px]' />
+                    </motion.div>
                 </div>
                 {/* mobile responsive image */}
                 <div className='md:hidden '>

@@ -3,6 +3,9 @@ import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+
+const MotionLink = motion(Link);
 
 interface Product {
     id: number;
@@ -31,10 +34,8 @@ const YouAlsoMayLike = () => {
         fetchProducts();
     }, []);
 
-    /* ===================== */
-    /* ✅ Loading Skeleton */
-    /* ===================== */
-
+ 
+    /*  Loading Skeleton */
     if (loading) {
         return (
             <div className='pb-6 pt-6 md:pb-15 md:pt-22.5 animate-pulse'>
@@ -56,9 +57,9 @@ const YouAlsoMayLike = () => {
         );
     }
 
-    /* ===================== */
-    /* ✅ Empty State */
-    /* ===================== */
+
+    /*  Empty State */
+
 
     if (!products.length) {
         return (
@@ -73,14 +74,20 @@ const YouAlsoMayLike = () => {
         );
     }
 
-    /* ===================== */
-    /* 🔥 Original UI (Unchanged) */
-    /* ===================== */
+
+    /*  Original UI (Unchanged) */
+  
 
     return (
         <div className='pb-6 pt-6 md:pb-15 md:pt-22.5'>
 
-            <div className='flex justify-between items-end mb-6 md:mb-8'>
+            <motion.div
+                className='flex justify-between items-end mb-6 md:mb-8'
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.3 }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+            >
                 <h1 className='font-semibold text-2xl text-[#232321] md:text-[48px] uppercase'>
                     You may also like
                 </h1>
@@ -98,11 +105,19 @@ const YouAlsoMayLike = () => {
                         <path d="M18 15.5L22.5 20L18 24.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                 </div>
-            </div>
+            </motion.div>
 
             <div className='grid md:grid-cols-4 grid-cols-2 gap-4'>
-                {products.map((product) => (
-                    <div key={product.id} className='flex flex-col'>
+                {products.map((product, index) => (
+                    <motion.div
+                        key={product.id}
+                        className='flex flex-col'
+                        initial={{ opacity: 0, y: 60 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: false, amount: 0.2 }}
+                        transition={{ duration: 0.55, ease: 'easeOut', delay: index * 0.1 }}
+                        whileHover={{ scale: 1.05 }}
+                    >
 
                         <div className='rounded-[24px] overflow-hidden relative border-6 border-white bg-[#eceef0]'>
 
@@ -125,17 +140,20 @@ const YouAlsoMayLike = () => {
                             {product.title}
                         </h2>
 
-                        <Link
+                        <MotionLink
                             href={`/product/${product.id}`}
                             className='py-2 px-4 rounded-lg text-[12px] text-center font-medium bg-black text-white w-full mt-auto'
+                            whileHover={{ scale: 1.03 }}
+                            whileTap={{ scale: 0.97 }}
+                            transition={{ duration: 0.2 }}
                         >
                             View Product -
                             <span className='text-[#FFA52F] text-[12px] font-medium'>
                                 ${product.price}
                             </span>
-                        </Link>
+                        </MotionLink>
 
-                    </div>
+                    </motion.div>
                 ))}
             </div>
 
