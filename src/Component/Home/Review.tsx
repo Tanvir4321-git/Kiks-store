@@ -11,7 +11,7 @@ import review3 from '../../../public/review3.png'
 
 const Review = () => {
     return (
-        <div className='md:max-w-330 max-w-89.5 mx-auto pt-5  md:pt-32'>
+        <div className='md:max-w-330 max-w-89.5 mx-auto py-5  md:py-32'>
             <div className='flex items-center justify-between mb-5 md:mb-12'>
                 <h1 className='font-semibold md:text-[74px] text-2xl'>Reviews</h1>
                 <button className='py-2 md:px-8 px-4  rounded-lg bg-[#4A69E2] text-white'>See All</button>

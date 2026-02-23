@@ -3,7 +3,7 @@ import logo from '../../../public/footerlogo.png'
 import Image from 'next/image';
 const Newsletter = () => {
     return (
-        <div className='md:max-w-330 max-w-89.5 mx-auto p-4 md:p-0 md:py-18 rounded-2xl md:rounded-[48px] mt-11.5 md:mt-32 bg-[#4A69E2]'>
+        <div className='md:max-w-330 max-w-89.5 mx-auto p-4 md:p-0 md:py-18 rounded-2xl md:rounded-[48px]   bg-[#4A69E2]'>
             <div className='flex  md:flex-row flex-col items-center justify-between'>
 
             <div className='md:ml-18 '>

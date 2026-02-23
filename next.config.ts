@@ -9,6 +9,16 @@ const nextConfig: NextConfig = {
         hostname: 'i.imgur.com',
       
       },
+      {
+        protocol: 'https',
+        hostname: 'images.stockx.com',
+      
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      
+      },
     ],
   },
 };

@@ -9,6 +9,7 @@ interface Product {
   title: string;
   price: number;
   description: string;
+  image: string[]
   category: {
     id: number;
     name: string;
@@ -23,7 +24,7 @@ const NewDrops = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await axios('https://api.escuelajs.co/api/v1/products?categoryId=4');
+      const res = await axios('https://api.escuelajs.co/api/v1/products');
       const limited = res.data.slice(0, 4);
       setProducts(limited);
       setLoading(false);

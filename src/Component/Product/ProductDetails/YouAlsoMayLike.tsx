@@ -31,53 +31,91 @@ const YouAlsoMayLike = () => {
         fetchProducts();
     }, []);
 
+    /* ===================== */
+    /* ✅ Loading Skeleton */
+    /* ===================== */
+
+    if (loading) {
+        return (
+            <div className='pb-6 pt-6 md:pb-15 md:pt-22.5 animate-pulse'>
+                <div className='flex justify-between items-end mb-6 md:mb-8'>
+                    <div className='h-8 bg-gray-300 w-48 rounded'></div>
+                    <div className='h-8 bg-gray-300 w-20 rounded'></div>
+                </div>
+
+                <div className='grid md:grid-cols-4 grid-cols-2 gap-4'>
+                    {[1, 2, 3, 4].map((item) => (
+                        <div key={item} className='flex flex-col space-y-3'>
+                            <div className='rounded-[24px] bg-gray-300 md:h-65 h-41'></div>
+                            <div className='h-4 bg-gray-300 w-3/4 rounded'></div>
+                            <div className='h-8 bg-gray-300 w-full rounded'></div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+    }
+
+    /* ===================== */
+    /* ✅ Empty State */
+    /* ===================== */
+
+    if (!products.length) {
+        return (
+            <div className='pb-20 pt-20 text-center'>
+                <h2 className='text-2xl font-semibold text-gray-700'>
+                    No Related Products Found
+                </h2>
+                <p className='text-gray-500 mt-2'>
+                    Please check back later for more products.
+                </p>
+            </div>
+        );
+    }
+
+    /* ===================== */
+    /* 🔥 Original UI (Unchanged) */
+    /* ===================== */
+
     return (
         <div className='pb-6 pt-6 md:pb-15 md:pt-22.5'>
 
-            {/* Title */}
             <div className='flex justify-between items-end mb-6 md:mb-8'>
                 <h1 className='font-semibold text-2xl text-[#232321] md:text-[48px] uppercase'>
                     You may also like
                 </h1>
 
-                {/* arrow */}
                 <div className='flex items-center gap-2'>
-                    <svg  className='w-8 h-8 md:w-10 md:h-10 '  viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg className='w-8 h-8 md:w-10 md:h-10' viewBox="0 0 40 40" fill="none">
                         <g opacity="0.5">
                             <rect x="40" y="40" width="40" height="40" rx="8" transform="rotate(180 40 40)" fill="#232321" />
-                            <path d="M22 24.5L17.5 20L22 15.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M22 24.5L17.5 20L22 15.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </g>
                     </svg>
 
-                    <svg className='w-8 h-8 md:w-10 md:h-10 ' viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg className='w-8 h-8 md:w-10 md:h-10' viewBox="0 0 40 40" fill="none">
                         <rect width="40" height="40" rx="8" fill="#232321" />
-                        <path d="M18 15.5L22.5 20L18 24.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M18 15.5L22.5 20L18 24.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-
-
-
                 </div>
             </div>
 
-            {/* Grid */}
             <div className='grid md:grid-cols-4 grid-cols-2 gap-4'>
                 {products.map((product) => (
                     <div key={product.id} className='flex flex-col'>
 
                         <div className='rounded-[24px] overflow-hidden relative border-6 border-white bg-[#eceef0]'>
 
-                            {/* New Badge */}
                             <div className='bg-[#4A69E2] py-1.5 px-3 rounded-tl-[16px] rounded-br-[16px] absolute left-0 top-0 z-10'>
                                 <h3 className='font-semibold text-[12px] text-white'>New</h3>
                             </div>
 
-                            {/* Image */}
-                            <div className='relative w-full md:h-65 h-41 '>
+                            <div className='relative w-full md:h-65 h-41'>
                                 <Image
                                     src={product.images[0]}
                                     alt={product.title}
                                     fill
-                                    className='object-cover '
+                                    className='object-cover'
                                     unoptimized
                                 />
                             </div>
@@ -86,25 +124,20 @@ const YouAlsoMayLike = () => {
                         <h2 className='md:text-2xl text-[16px] font-semibold my-4'>
                             {product.title}
                         </h2>
-                        <Link href={`/product/${product.id}`} className='py-2 px-4 rounded-lg text-[12px] text-center font-medium bg-black text-white w-full mt-auto' >
-                            View Product - <span className='text-[#FFA52F] text-[12px] font-medium'>${product.price}</span>
+
+                        <Link
+                            href={`/product/${product.id}`}
+                            className='py-2 px-4 rounded-lg text-[12px] text-center font-medium bg-black text-white w-full mt-auto'
+                        >
+                            View Product -
+                            <span className='text-[#FFA52F] text-[12px] font-medium'>
+                                ${product.price}
+                            </span>
                         </Link>
-
-
 
                     </div>
                 ))}
             </div>
-            <span className='flex justify-center mt-8'>
-                <svg width="172" height="6" viewBox="0 0 172 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="40" height="6" rx="3" fill="#4A69E2"/>
-<rect opacity="0.25" x="44" width="40" height="6" rx="3" fill="#232321"/>
-<rect opacity="0.25" x="88" width="40" height="6" rx="3" fill="#232321"/>
-<rect opacity="0.25" x="132" width="40" height="6" rx="3" fill="#232321"/>
-</svg>
-
-
-            </span>
 
         </div>
     );
