@@ -1,17 +1,19 @@
-
+'use client'
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../../../public/Logo.png'
 import Link from 'next/link';
 
 const Navbar = () => {
+    const [menuOpen, setMenuOpen] = useState(false);
+
     return (
         <div className='bg-[#e7e7e3] pt-8'>
             <div className='md:max-w-330 max-w-89.5 mx-auto bg-white p-4 md:p-8  md:rounded-3xl rounded-xl flex items-center justify-between ' >
 
                 {/* menu */}
                  {/* mobile bar icon */}
-                <div className='md:hidden'>
+                <div className='md:hidden cursor-pointer' onClick={() => setMenuOpen(!menuOpen)}>
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M2 4.75C2 4.55109 2.07902 4.36032 2.21967 4.21967C2.36032 4.07902 2.55109 4 2.75 4H17.25C17.4489 4 17.6397 4.07902 17.7803 4.21967C17.921 4.36032 18 4.55109 18 4.75C18 4.94891 17.921 5.13968 17.7803 5.28033C17.6397 5.42098 17.4489 5.5 17.25 5.5H2.75C2.55109 5.5 2.36032 5.42098 2.21967 5.28033C2.07902 5.13968 2 4.94891 2 4.75ZM2 10C2 9.80109 2.07902 9.61032 2.21967 9.46967C2.36032 9.32902 2.55109 9.25 2.75 9.25H17.25C17.4489 9.25 17.6397 9.32902 17.7803 9.46967C17.921 9.61032 18 9.80109 18 10C18 10.1989 17.921 10.3897 17.7803 10.5303C17.6397 10.671 17.4489 10.75 17.25 10.75H2.75C2.55109 10.75 2.36032 10.671 2.21967 10.5303C2.07902 10.3897 2 10.1989 2 10ZM2 15.25C2 15.0511 2.07902 14.8603 2.21967 14.7197C2.36032 14.579 2.55109 14.5 2.75 14.5H17.25C17.4489 14.5 17.6397 14.579 17.7803 14.7197C17.921 14.8603 18 15.0511 18 15.25C18 15.4489 17.921 15.6397 17.7803 15.7803C17.6397 15.921 17.4489 16 17.25 16H2.75C2.55109 16 2.36032 15.921 2.21967 15.7803C2.07902 15.6397 2 15.4489 2 15.25Z" fill="black" />
                     </svg>
@@ -56,6 +58,16 @@ const Navbar = () => {
 
                 </div>
             </div>
+
+            {/* Mobile Menu */}
+            {menuOpen && (
+                <div className='md:hidden max-w-89.5 mx-auto bg-white mt-2 rounded-xl p-6 flex flex-col gap-5 font-semibold'>
+                    <a href="" onClick={() => setMenuOpen(false)}>New Drops 🔥</a>
+                    <a href="" onClick={() => setMenuOpen(false)}>Men</a>
+                    <a href="" onClick={() => setMenuOpen(false)}>Women</a>
+                    <Link href='/cart' onClick={() => setMenuOpen(false)}>Cart</Link>
+                </div>
+            )}
 
         </div>
     );
