@@ -19,7 +19,7 @@ const openSans = Open_Sans({
 
 export const metadata: Metadata = {
     title: {
-    default: "Kicks| Onle Shop ",
+    default: "Kicks | Onle Shop ",
     template: "%s | E-commerce",
   },
 }

@@ -7,6 +7,8 @@ import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
+
+
 interface Product {
     id: number;
     title: string;

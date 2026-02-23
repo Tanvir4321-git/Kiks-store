@@ -5,6 +5,8 @@ import cartImage from '../../../public/cart.png'
 import Image from 'next/image';
 import YouAlsoMayLike from '@/Component/Product/ProductDetails/YouAlsoMayLike';
 
+
+
 const Cart = () => {
     const [quantity, setquantity] = useState<number>(1);
 
